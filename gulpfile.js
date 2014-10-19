@@ -1,8 +1,15 @@
 // include the required packages.
 var gulp = require('gulp');
 var stylus = require('gulp-stylus');
+
+/* stylus plugins */
 var jeet = require('jeet');
 var rupture = require('rupture');
+var autoprefixer = require('autoprefixer-stylus');
+
+
+var stylusPlugins = [autoprefixer(), rupture(), jeet()];
+
 var inject = require("gulp-inject");
 var browserSync = require('browser-sync');
 
@@ -11,14 +18,14 @@ var browserSync = require('browser-sync');
 gulp.task('compile-stylus', function () {
   gulp.src('./demo/demo.styl')
     .pipe(stylus({
-      use: [rupture(), jeet()],
+      use: stylusPlugins,
       linenos: true
     }))
     .pipe(gulp.dest('./demo/css'));
 
   gulp.src('./stylus/main.styl')
     .pipe(stylus({
-      use: [rupture(), jeet()],
+      use: stylusPlugins,
       linenos: true
     }))
     .pipe(gulp.dest('./demo/css'))
