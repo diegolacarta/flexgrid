@@ -1,0 +1,12 @@
+.container
+  center()
+
+.row
+  clearfix()
+
+.columns
+  for device in devices
+    for columns in (1..numColumns)
+      +above(device)
+        &.{device}-{columns}
+          col(columns/numColumns)

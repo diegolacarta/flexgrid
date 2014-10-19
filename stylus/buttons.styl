@@ -1,0 +1,31 @@
+hover()
+  &:hover
+    background-color darken(@background-color, 5)
+
+
+.button
+  cursor pointer
+  display inline-block
+  transition 0.2s all
+  padding 1rem
+  box-shadow 0px 0px 1px black
+
+  &.big
+    padding @padding * 2
+
+  &.small
+    padding @padding * 0.5
+
+  &.primary
+    background-color colorPrimary
+    hover()
+
+  &.alert
+    background-color colorAlert
+    hover()
+
+  &.success
+    background-color colorSuccess
+    hover()
+
+

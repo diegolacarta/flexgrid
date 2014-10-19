@@ -1,0 +1,12 @@
+{
+  "name": "flexgrid",
+  "version": "0.0.1",
+  "devDependencies": {
+    "gulp": "^3.8.8",
+    "gulp-stylus": "^1.3.3",
+    "gulp-inject": "^1.0.2",
+    "browser-sync": "^1.5.7",
+    "jeet": "^6.1.2",
+    "rupture": "^0.4.0"
+  }
+}
