@@ -1,0 +1,18 @@
+.container
+  margin auto
+  padding 0 containerPaddingHorizontal
+
+.row
+  display flex
+  flex-direction row
+  flex-wrap wrap
+
+.columns
+  for device in devices
+    for columnsToSpan in (1..gridColumns)
+      +above(device)
+        &.{device}-{columnsToSpan}
+          column(columnsToSpan, gridColumns)
+
+
+
