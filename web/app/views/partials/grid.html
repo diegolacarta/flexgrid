@@ -1,0 +1,16 @@
+<section ng-controller="GridCtrl">
+  <h1>The grid</h1>
+  <div>
+    <div class="row">
+      <div ng-repeat="container in row"
+           class="mobile-{{container.mobile}}
+                  tablet-{{container.tablet}}
+                  desktop-{{container.desktop}}
+                  columns">
+              <span class="visible-mobile">.mobile-{{container.mobile}}</span>
+              <span class="visible-tablet">.tablet-{{container.tablet}}</span>
+              <span class="visible-desktop">.desktop-{{container.desktop}}</span>
+      </div>
+    </div>
+  </div>
+</section>

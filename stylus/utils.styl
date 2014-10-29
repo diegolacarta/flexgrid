@@ -6,3 +6,31 @@
 
 .center-text
   text-align center
+
+.hidden
+  display none !important
+
+.hidden-mobile
+  +mobile()
+    display none !important
+
+.hidden-tablet
+  +tablet()
+    display none !important
+
+.hidden-desktop
+  +desktop()
+    display none !important
+
+.visible-mobile
+  @extend .hidden-tablet
+  @extend .hidden-desktop
+
+.visible-tablet
+  @extend .hidden-mobile
+  @extend .hidden-desktop
+
+.visible-desktop
+  @extend .hidden-mobile
+  @extend .hidden-tablet
+
