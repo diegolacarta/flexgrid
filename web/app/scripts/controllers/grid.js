@@ -10,45 +10,55 @@
 angular.module('flexgrid')
   .controller('GridCtrl', function ($scope) {
     var gridColumns = 12;
+    var maxContainerPerRow = 3;
 
-    function getRandom(numContainers) {
-      return Math.floor((Math.random() * numContainers) + 1);
+    $scope.generateRows = function () {
+      $scope.rows = generateRowsForAllDevices(30);
+    };
+
+    $scope.generateRows();
+
+    function getRandom(max) {
+      return Math.floor((Math.random() * max) + 1);
     }
 
-    function generateRow(numContainers) {
+    function generateRowForOneDevice(numContainers, fillEmptySpace) {
       var values = [];
       var totalColsUsed = 0;
       while (numContainers) {
-        var numCols;
-
-        if (numContainers === 1) {
-          numCols = gridColumns - totalColsUsed;
-        } else {
-          do {
-            numCols = getRandom(gridColumns - totalColsUsed);
-          } while(numCols > numContainers || !numCols);
-        }
-
+        var remainingCols = gridColumns - totalColsUsed;
+        var numCols = (fillEmptySpace && numContainers === 1) ? remainingCols : getRandom(remainingCols - numContainers);
         values.push(numCols);
         totalColsUsed += numCols;
         numContainers--;
       }
+
       return values;
     }
 
-    var row = [];
-    var numContainers = 4;
-    var devices = ['mobile', 'tablet', 'desktop'];
-    var devicesValues = [];
-    devices.forEach(function(device) {
-       var values = generateRow(numContainers).map(function(value) {
-        var obj = {};
-        obj[device] = value;
-        return obj;
+    function generateRowForAllDevices(numContainers) {
+      var devices = ['mobile', 'tablet', 'desktop'];
+      var devicesValues = [];
+      devices.forEach(function(device) {
+        var values = generateRowForOneDevice(numContainers).map(function(value) {
+          var obj = {};
+          obj[device] = value;
+
+          return obj;
+        });
+        devicesValues.push(values);
       });
 
-      devicesValues.push(values);
-    });
-    $scope.row = _.merge.apply(_, devicesValues);
+      return _.merge.apply(this, devicesValues);
+    }
+
+    function generateRowsForAllDevices(numRows, numContainersPerRow) {
+      var rows = [];
+      for (var i = 0; i < numRows; i++) {
+        rows.push(generateRowForAllDevices(numContainersPerRow || getRandom(maxContainerPerRow)));
+      }
+
+      return rows;
+    }
   });
 
