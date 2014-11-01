@@ -6,9 +6,11 @@
   display flex
   flex-direction row
   flex-wrap wrap
-  padding rowPaddingVertical 0
+  padding rowPaddingVertical rowPaddingHorizontal
 
 .columns
+  padding 0 columnPaddingHorizontal
+
   for device in devices
     for columnsToSpan in (1..gridColumns)
       +above(device)

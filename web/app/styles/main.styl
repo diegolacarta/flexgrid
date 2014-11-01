@@ -1,12 +1,22 @@
 bg = gold
 
 .grid-container
-  background darken(bg, 40%)
+  font-weight bold
+  background darken(bg, 20%)
+
+  .row
+    border 2px solid darken(bg, 60%)
+
+    &:not(:first-of-type)
+      border-top none
 
 .columns
-  border 1px solid blue
   background bg
   text-align center
+  line-height 2
+
+  &:not(:first-child)
+    border-left 2px solid darken(bg, 20%)
 
   > *
     white-space nowrap
