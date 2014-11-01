@@ -13,7 +13,7 @@ angular.module('flexgrid')
     var containersPerRow = undefined;
     var maxContainersPerRow = 4;
     var fillEmptySpace = true;
-    var numRows = 10;
+    var numRows = 1;
 
     $scope.generateRows = function () {
       $scope.rows = generateRowsForAllDevices(numRows, containersPerRow, fillEmptySpace);

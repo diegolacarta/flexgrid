@@ -1,10 +1,10 @@
 <section ng-controller="GridCtrl">
   <h1>The grid</h1>
-  <div class="row">
+  <div class="row stack-mobile">
     <button class="button primary" ng-click="generateRows()">Generate rows</button>
   </div>
   <div class="grid-container">
-    <div class="row" ng-repeat="row in rows">
+    <div class="row stack-mobile" ng-repeat="row in rows">
       <div ng-repeat="container in row"
            class="mobile-{{container.mobile}}
                   tablet-{{container.tablet}}

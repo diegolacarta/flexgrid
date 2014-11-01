@@ -1,3 +1,8 @@
 // Generates a flex column
 column(columnsToSpan, totalColumns)
   flex-basis columnsToSpan * (100 / totalColumns)%
+
+stack()
+  flex-direction column
+  .columns
+    flex 1
