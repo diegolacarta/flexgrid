@@ -4,18 +4,8 @@ bg = gold
   font-weight bold
 
   .row
-    border 2px solid darken(bg, 60%)
-    background darken(bg, 20%)
-
-    &:not(:first-of-type)
-      border-top none
-
     .columns
-      background bg
+      background gold
+      background-clip content-box
       text-align center
       line-height 2
-
-      border 1px solid darken(bg, 20%)
-
-      > *
-        white-space nowrap

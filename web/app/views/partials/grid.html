@@ -1,4 +1,4 @@
-<section ng-controller="GridCtrl" class="row">
+<section ng-controller="GridCtrl">
   <h1>The grid</h1>
   <form>
     <button class="button primary" ng-click="generateRows()">Generate rows</button>
@@ -17,7 +17,7 @@
       <input type="checkbox" ng-model="fillEmptySpace"/><span>Fill empty space</span>
     </div>
   </form>
-  <div class="grid-container mobile-12 columns">
+  <div class="grid-container">
     <div class="row stack-mobile" ng-repeat="row in rows">
       <div ng-repeat="container in row"
            class="mobile-{{container.mobile}}
