@@ -1,12 +1,12 @@
 .container
   margin auto
-  padding 0 containerPaddingHorizontal
+  padding containerVerticalPadding containerHorizontalPadding
 
 .row
   display flex
   flex-direction row
   flex-wrap wrap
-  padding rowPaddingVertical rowPaddingHorizontal
+  padding rowVerticalPadding rowHorizontalPadding
 
   &.stack
     stack()
@@ -18,7 +18,7 @@
 
 
 .columns
-  padding 0 columnPaddingHorizontal
+  padding columnVerticalPadding columnHorizontalPadding
 
   for device in devices
     for columnsToSpan in (1..gridColumns)

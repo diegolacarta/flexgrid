@@ -10,13 +10,27 @@
 angular.module('flexgrid')
   .controller('GridCtrl', function ($scope) {
     var gridColumns = 12;
-    var containersPerRow = undefined;
-    var maxContainersPerRow = 4;
-    var fillEmptySpace = true;
-    var numRows = 1;
+    $scope.containersPerRow = 4;
+    $scope.randomContainersPerRow = false;
+    $scope.fillEmptySpace = true;
+    $scope.numRows = 1;
+    $scope.rows = [];
+
+    $scope.updateRows = function () {
+      if ($scope.numRows < 0) {
+        return;
+      }
+
+      while ($scope.numRows < $scope.rows.length) {
+        $scope.rows.pop();
+      }
+      while ($scope.numRows > $scope.rows.length) {
+        $scope.rows.push(generateRowForAllDevices());
+      }
+    };
 
     $scope.generateRows = function () {
-      $scope.rows = generateRowsForAllDevices(numRows, containersPerRow, fillEmptySpace);
+      $scope.rows = generateRowsForAllDevices();
     };
 
     $scope.generateRows();
@@ -25,12 +39,12 @@ angular.module('flexgrid')
       return Math.floor((Math.random() * max) + 1);
     }
 
-    function generateRowForOneDevice(numContainers, fillEmptySpace) {
+    function generateRowForOneDevice(numContainers) {
       var values = [];
       var totalColsUsed = 0;
       while (numContainers) {
         var remainingCols = gridColumns - totalColsUsed;
-        var numCols = (fillEmptySpace && numContainers === 1) ? remainingCols : getRandom(remainingCols - numContainers + 1);
+        var numCols = ($scope.fillEmptySpace && numContainers === 1) ? remainingCols : getRandom(remainingCols - numContainers + 1);
         numContainers--;
         values.push(numCols);
         totalColsUsed += numCols;
@@ -39,12 +53,12 @@ angular.module('flexgrid')
       return values;
     }
 
-    function generateRowForAllDevices(numContainers, fillEmptySpace) {
-      numContainers = numContainers || getRandom(maxContainersPerRow);
+    function generateRowForAllDevices() {
+      var numContainers = $scope.randomContainersPerRow ? getRandom($scope.containersPerRow) : $scope.containersPerRow;
       var devices = ['mobile', 'tablet', 'desktop'];
       var devicesValues = [];
       devices.forEach(function(device) {
-        var values = generateRowForOneDevice(numContainers, fillEmptySpace).map(function(value) {
+        var values = generateRowForOneDevice(numContainers).map(function(value) {
           var obj = {};
           obj[device] = value;
 
@@ -56,10 +70,10 @@ angular.module('flexgrid')
       return _.merge.apply(this, devicesValues);
     }
 
-    function generateRowsForAllDevices(numRows, numContainersPerRow, fillEmptySpace) {
+    function generateRowsForAllDevices() {
       var rows = [];
-      for (var i = 0; i < numRows; i++) {
-        rows.push(generateRowForAllDevices(numContainersPerRow, fillEmptySpace));
+      for (var i = 0; i < $scope.numRows; i++) {
+        rows.push(generateRowForAllDevices());
       }
 
       return rows;

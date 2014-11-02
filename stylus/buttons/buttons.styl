@@ -1,0 +1,26 @@
+button, .button
+  border none
+  cursor pointer
+  display inline-block
+  transition 0.2s all
+  padding buttonPaddingVertical buttonPaddingHorizontal
+  border-radius borderRadius
+  border 0.1rem solid transparent
+  generateButton()
+
+  &.big
+    padding buttonPaddingVertical * 2 buttonPaddingHorizontal * 2
+
+  &.small
+    padding buttonPaddingVertical * 0.5 buttonPaddingHorizontal * 0.5
+
+  &.primary
+    generateButton(colorPrimary)
+
+  &.alert
+    generateButton(colorAlert)
+
+  &.success
+    generateButton(colorSuccess)
+
+
