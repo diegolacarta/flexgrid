@@ -1,21 +1,23 @@
-<section ng-controller="GridCtrl">
+<section ng-controller="GridCtrl" class="row">
   <h1>The grid</h1>
-  <div>
+  <form>
     <button class="button primary" ng-click="generateRows()">Generate rows</button>
-    <div>
-      <label for="numRows">Number of rows</label>
-      <input type="number" id="numRows" ng-model="numRows" ng-change="updateRows()"/>
+    <div class="row">
+      <div class="mobile-4 columns">
+        <label for="numRows">Number of rows</label>
+        <input type="number" id="numRows" ng-model="numRows" ng-change="updateRows()"/>
+      </div>
+      <div class="mobile-4 columns">
+        <label for="containersPerRow">Containers per row</label>
+        <input type="number" id="containersPerRow" ng-model="containersPerRow" ng-change="updateRows()"/>
+        <input type="checkbox" ng-model="randomContainersPerRow"/><span>Random</span>
+      </div>
     </div>
-    <div>
-      <label for="containersPerRow">Containers per row</label>
-      <input type="number" id="containersPerRow" ng-model="containersPerRow" ng-change="updateRows()"/>
-      <input type="checkbox" ng-model="randomContainersPerRow"/><span>Random</span>
     </div>
-    <div>
       <input type="checkbox" ng-model="fillEmptySpace"/><span>Fill empty space</span>
     </div>
-  </div>
-  <div class="grid-container">
+  </form>
+  <div class="grid-container mobile-12 columns">
     <div class="row stack-mobile" ng-repeat="row in rows">
       <div ng-repeat="container in row"
            class="mobile-{{container.mobile}}
